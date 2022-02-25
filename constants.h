@@ -1,0 +1,9 @@
+/**
+ * @author 222100209_ÀîÑ×¶«
+ * @date 2022/2/25
+ */
+
+#ifndef LINKEDLISTDEMO_CONSTANTS_H
+#define LINKEDLISTDEMO_CONSTANTS_H
+
+#endif //LINKEDLISTDEMO_CONSTANTS_H
