@@ -30,5 +30,7 @@
 int main() {
     copyRight();
     showTime();
+    menu();
+
     return 0;
 }
