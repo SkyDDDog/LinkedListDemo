@@ -26,11 +26,12 @@
 #include "constants.h"
 #include "myFunc.h"
 
+using namespace std;
 
 int main() {
-    copyRight();
-    showTime();
-    menu();
 
+    cout << getChoice() << endl;
+
+    system("pause");
     return 0;
 }

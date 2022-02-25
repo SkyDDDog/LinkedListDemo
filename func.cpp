@@ -4,6 +4,8 @@
  */
 #include <iostream>
 #include <ctime>
+#include <conio.h>
+#include <cstring>
 
 using namespace std;
 
@@ -21,7 +23,6 @@ void copyRight() {
  */
 void showTime() {
     struct tm tm;
-    static char wday[][4]={"日","一","二","三","四","五","六"};
     //获取时间戳
     time_t ts = time(0);
     localtime_r(&ts,&tm);
@@ -35,7 +36,10 @@ void showTime() {
  * @param no param
  */
 void menu() {
-    for (int i = 0; i < 50; ++i) {
+    copyRight();
+    showTime();
+    putchar('\n');
+    for (int i = 0; i < 61; ++i) {
         cout << '*';
     }
     cout << endl;
@@ -51,8 +55,24 @@ void menu() {
          << "*  P:查找链表中\"年月日\"都是素数的节点                       *" << endl
          << "*  F:<单向>链表翻转                                         *" << endl
          << "*  Q:退出系统                                               *" << endl;
-    for (int i = 0; i < 50; ++i) {
+    for (int i = 0; i < 61; ++i) {
         cout << '*';
     }
     cout << endl;
+}
+
+char getChoice() {
+    char choice = 'Q';
+    char option[] = "C,O,S,X,N,D,I,T,A,P,F,Q";
+    while (true) {
+        menu();
+        cout << "请选择(" << option << "):" << endl;
+        choice = char(toupper(getche()));
+        putchar('\n');
+        if (strchr(option,choice) && choice!=',') {
+            break;
+        }
+        cout << "\a\n选择错误,请重新输入......\n" << endl;
+    }
+    return choice;
 }

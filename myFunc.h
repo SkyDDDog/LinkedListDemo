@@ -11,3 +11,4 @@
 void copyRight();
 void showTime();
 void menu();
+char getChoice();
