@@ -33,3 +33,6 @@ void deleteList(struct List *head);
 void deleteHead(struct List *head);
 //删除最后一个节点
 void deleteTail(struct List *head);
+//获取当前时间
+struct Date getCurTime();
+

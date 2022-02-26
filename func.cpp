@@ -361,3 +361,16 @@ void deleteTail(struct List *head) {
     free(prev->next);
     prev->next = NULL;
 }
+
+/**
+ * @func 获取当前日期
+ * @return 日期结构
+ */
+struct Date getCurTime() {
+    time_t timep;
+    time(&timep);
+    struct tm *p;
+    p = gmtime(&timep);
+    struct Date date = {1900 + p->tm_year,1 + p->tm_mon,p->tm_mday};
+    return date;
+}
