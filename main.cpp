@@ -30,12 +30,14 @@
 
 using namespace std;
 
+struct Date {
+    int year;
+    int month;
+    int day;
+};
+
 struct List {
-    struct Date {
-        int year;
-        int month;
-        int day;
-    }date;
+    struct Date date;
     struct List *next;
 };
 
