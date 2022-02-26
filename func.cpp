@@ -133,7 +133,7 @@ struct List* createList() {
     cout << "请输入要创建的节点数:";
     cin >> n;
     head = createList(n);
-    cout << "成功创建含有" << n << "个节点的链表!\n" << endl;
+    cout << "成功创建" << n << "个日期节点!(1921<=年<=2021,1<=月<=12,1<=日<=31)\n" << endl;
 
     system("pause");
     cout << endl;
@@ -174,6 +174,10 @@ void showAll(struct List *head) {
             cout << endl;
         }
     }
+
+    cout << endl;
+    system("pause");
+    cout << endl;
 }
 
 /**
@@ -200,6 +204,9 @@ void showList(struct List *head,int n) {
             break;
         }
     }
+
+    system("pause");
+    cout << endl;
 }
 
 /**
@@ -215,14 +222,14 @@ void showList(struct List *head) {
     } else {
         showList(head,n);
     }
-
-    cout << endl;
-    system("pause");
-    cout << endl;
 }
 
+/**
+ * @func 将链表数据存入文件
+ * @param head 链表头指针
+ * @return 是否存入成功
+ */
 bool saveInFile(struct List *head) {
-
     ofstream outfile;
     outfile.open("D:\\tempFile\\test.db");
     if (!outfile) {
@@ -237,6 +244,63 @@ bool saveInFile(struct List *head) {
     }
     outfile.close();
     cout << "文件输入成功,请打开\"D:\\tempFile\\test.db\"查看结果" << endl;
+
+    system("pause");
+    cout << endl;
+    return true;
+}
+
+/**
+ * @func 判断日期合法性
+ * @param year 年
+ * @param month 月
+ * @param day 日
+ * @return 日期是否合法
+ */
+bool isAc(int year,int month,int day) {
+    if (month = 2 && (year % 4 == 0 && year % 100 != 0) || (year % 400 == 0)) {
+        if (day > 29) {
+            return false;
+        } else {
+            return true;
+        }
+    } else if (month == 2) {
+        if (day > 28) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+    if (month==1 || month==3 || month==5 || month==7 || month==8 || month==10 || month==12) {
+        return true;
+    } else {
+        if (day > 30) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+}
+
+/**
+ * @func 输出不合法日期
+ * @param head 链表头指针
+ */
+void showNotAcDate(struct List *head) {
+    int cnt = 0;
+    int row = 1;
+    for (struct List *current = head->next; current ; current=current->next) {
+        if (!isAc(current->date.year,current->date.month,current->date.day)) {
+            cnt++;
+            printf(" %04d.%02d.%02d "
+                    ,current->date.year,current->date.month,current->date.day);
+            if ((!((cnt+1)%5)) && cnt) {
+                cout << endl;
+            }
+        }
+    }
+    cout << endl;
+    cout << "不能构成合法日期的个数为:" << cnt << endl;
 
     system("pause");
     cout << endl;

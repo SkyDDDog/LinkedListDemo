@@ -63,8 +63,10 @@ int main() {
                 saveInFile(head);
                 break;
             case 'X':
+                showAll(head);
                 break;
             case 'N':
+                showNotAcDate(head);
                 break;
             case 'D':
                 break;
@@ -85,3 +87,4 @@ int main() {
     system("pause");
     return 0;
 }
+

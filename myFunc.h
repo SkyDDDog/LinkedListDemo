@@ -23,3 +23,7 @@ void showList(struct List *head,int n);
 void showList(struct List *head);
 //将链表数据存入文件
 bool saveInFile(struct List *head);
+//判断日期合法性
+bool isAc(int year,int month,int day);
+//输出不合法日期
+void showNotAcDate(struct List *head);
