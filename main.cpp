@@ -47,13 +47,14 @@ int main() {
     while ((choice=getChoice())!='Q') {
         if (choice!='C' && head->next==NULL) {
             cout << "\a\n链表为空!请先创建链表!\n" << endl;
+            continue;
         }
         switch (choice) {
             case 'C':
-                createList();
+                head = createList();
                 break;
             case 'O':
-
+                showList(head);
                 break;
             case 'S':
 

@@ -95,7 +95,7 @@ char getChoice() {
 }
 
 /**
- * @func 初始化链表
+ * @func 初始化链表并插入随机日期
  * @param n 创建的节点数
  * @return 链表头指针
  */
@@ -106,9 +106,12 @@ struct List* createList(int n) {
     head->next=NULL;
     for (int i=0;i<n;i++) {
         node=(struct List *)malloc(sizeof(struct List));
-        node->date.day = 0;
-        node->date.month = 0;
-        node->date.year = 0;
+        srand(time(NULL));
+        node->date.day = rand()%31+1;
+        srand(time(NULL));
+        node->date.month = rand()%12+1;
+        srand(time(NULL));
+        node->date.year = rand()%100+1921;
         node->next=head->next;
         head->next=node;
     }
@@ -145,4 +148,72 @@ void freeList(struct List * head)
         head = current->next;
         free(current);
     }
+}
+
+/**
+ * @func 分页输出链表所有数据
+ * @param head 链表头指针
+ */
+void showAll(struct List *head) {
+    struct List *current;
+    current = head->next;
+    int row=1;
+    while (current) {
+        printf("%2d:",row);
+        for (int i = 0; i < 5 && current; ++i) {
+            printf(" %04d.%02d.%02d "
+                    ,current->date.year,current->date.month,current->date.day);
+            current = current->next;
+        }
+        cout << endl;
+        row++;
+    }
+}
+
+/**
+ * @finc 分页输出特定数量的链表信息
+ * @param head 链表头指针
+ * @param n 查询的信息数量
+ */
+void showList(struct List *head,int n) {
+    struct List *current;
+    int row = 1, cnt = n;
+    current=head->next;
+//    while (current) {
+        for (int i = 0; i < n && current; ++i,--cnt) {
+            if (!(i%5)) {
+                printf("%2d:",row);
+                row++;
+            }
+            printf(" %04d.%02d.%02d "
+                   ,current->date.year,current->date.month,current->date.day);
+            current = current->next;
+            if ((!((i+1)%5)) && i) {
+                cout << endl;
+            }
+            if(!cnt) {
+                cout << endl;
+                break;
+            }
+        }
+//    }
+}
+
+/**
+ * @func 对showList方法的重载,加一层，分开使用showList()和showAll()
+ * @param head 链表头指针
+ */
+void showList(struct List *head) {
+    int n;
+    cout << "请输入要显示的节点个数(输入0以显示所有数据):";
+    cin >> n;
+    if (!n) {
+        showAll(head);
+    } else {
+        showList(head,n);
+    }
+
+    cout << endl;
+    system("pause");
+    cout << endl;
 }
