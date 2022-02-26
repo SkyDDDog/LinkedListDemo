@@ -7,6 +7,8 @@
 #include <conio.h>
 #include <cstring>
 #include <cstdlib>
+#include <fstream>
+#include "constants.h"
 
 using namespace std;
 
@@ -46,27 +48,32 @@ void showTime() {
  * @param no param
  */
 void menu() {
-    copyRight();
-    showTime();
-    putchar('\n');
-    for (int i = 0; i < 61; ++i) {
-        cout << '*';
+    for (int i = 0; i < 65; ++i) {
+        cout << '=';
     }
     cout << endl;
-    cout << "*  C:创建一个存放日期数据的无序链表                         *" << endl
-         << "*  O:显示链表前几个节点的日期数据                           *" << endl
-         << "*  S:将整个链表的所有数据存入文件                           *" << endl
-         << "*  X:分屏显示日期数据文件的<全部>内容                       *" << endl
-         << "*  N:显示不能构成合法日期的<所有>节点                       *" << endl
-         << "*  D:删除链表的第一个、最后一个、不能构成合法日期的节点     *" << endl
-         << "*  I:插入节点<至链头、链尾、结点之前、节点之后>             *" << endl
-         << "*  T:显示节点的日期对应的天数                               *"  << endl
-         << "*  A:链表按日期从小到大排序                                 *"  << endl
-         << "*  P:查找链表中\"年月日\"都是素数的节点                       *" << endl
-         << "*  F:<单向>链表翻转                                         *" << endl
-         << "*  Q:退出系统                                               *" << endl;
-    for (int i = 0; i < 61; ++i) {
-        cout << '*';
+    copyRight();
+    cout << endl;
+    showTime();
+    putchar('\n');
+    for (int i = 0; i < 65; ++i) {
+        cout << '=';
+    }
+    cout << endl;
+    cout << "$  C:创建一个存放日期数据的无序链表                             $" << endl
+         << "$  O:显示链表前几个节点的日期数据                               $" << endl
+         << "$  S:将整个链表的所有数据存入文件                               $" << endl
+         << "$  X:分屏显示日期数据文件的<全部>内容                           $" << endl
+         << "$  N:显示不能构成合法日期的<所有>节点                           $" << endl
+         << "$  D:删除链表的第一个、最后一个、不能构成合法日期的节点         $" << endl
+         << "$  I:插入节点<至链头、链尾、结点之前、节点之后>                 $" << endl
+         << "$  T:显示节点的日期对应的天数                                   $"  << endl
+         << "$  A:链表按日期从小到大排序                                     $"  << endl
+         << "$  P:查找链表中\"年月日\"都是素数的节点                           $" << endl
+         << "$  F:<单向>链表翻转                                             $" << endl
+         << "$  Q:退出系统                                                   $" << endl;
+    for (int i = 0; i < 65; ++i) {
+        cout << '=';
     }
     cout << endl;
 }
@@ -210,6 +217,27 @@ void showList(struct List *head) {
     }
 
     cout << endl;
+    system("pause");
+    cout << endl;
+}
+
+bool saveInFile(struct List *head) {
+
+    ofstream outfile;
+    outfile.open("D:\\tempFile\\test.db");
+    if (!outfile) {
+        cout << "\a文件打开失败!" << endl;
+        return false;
+    }
+    for (struct List *current = head->next; current ; current=current->next) {
+        outfile << current->date.year << '.'
+                << current->date.month << '.'
+                << current->date.day << '.'
+                << endl;
+    }
+    outfile.close();
+    cout << "文件输入成功,请打开\"D:\\tempFile\\test.db\"查看结果" << endl;
+
     system("pause");
     cout << endl;
 }

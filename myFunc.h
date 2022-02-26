@@ -21,3 +21,5 @@ void showAll(struct List *head);
 //输出链表数据(及其重载方法)
 void showList(struct List *head,int n);
 void showList(struct List *head);
+//将链表数据存入文件
+bool saveInFile(struct List *head);

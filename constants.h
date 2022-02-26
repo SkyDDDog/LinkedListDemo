@@ -3,7 +3,5 @@
  * @date 2022/2/25
  */
 
-#ifndef LINKEDLISTDEMO_CONSTANTS_H
-#define LINKEDLISTDEMO_CONSTANTS_H
-
-#endif //LINKEDLISTDEMO_CONSTANTS_H
+const int maxFileName = 100;
+const char fileName[] = "test.db";

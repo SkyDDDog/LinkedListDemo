@@ -48,6 +48,9 @@ int main() {
         if (choice!='C' && head->next==NULL) {
             cout << "\a\n链表为空!请先创建链表!\n" << endl;
             continue;
+
+            system("pause");
+            cout << endl;
         }
         switch (choice) {
             case 'C':
@@ -57,6 +60,7 @@ int main() {
                 showList(head);
                 break;
             case 'S':
+                saveInFile(head);
                 break;
             case 'X':
                 break;
