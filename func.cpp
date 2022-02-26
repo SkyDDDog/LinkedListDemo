@@ -9,6 +9,7 @@
 #include <cstdlib>
 #include <fstream>
 #include "constants.h"
+#include "myFunc.h"
 
 using namespace std;
 
@@ -257,13 +258,14 @@ bool saveInFile(struct List *head) {
  * @return 日期是否合法
  */
 bool isAc(int year,int month,int day) {
-    if (month = 2 && (year % 4 == 0 && year % 100 != 0) || (year % 400 == 0)) {
+    if (month == 2 && (year % 4 == 0 && year % 100 != 0) || (year % 400 == 0)) {
         if (day > 29) {
             return false;
         } else {
             return true;
         }
-    } else if (month == 2) {
+    }
+    if (month == 2) {
         if (day > 28) {
             return false;
         } else {
@@ -287,13 +289,12 @@ bool isAc(int year,int month,int day) {
  */
 void showNotAcDate(struct List *head) {
     int cnt = 0;
-    int row = 1;
     for (struct List *current = head->next; current ; current=current->next) {
         if (!isAc(current->date.year,current->date.month,current->date.day)) {
             cnt++;
             printf(" %04d.%02d.%02d "
                     ,current->date.year,current->date.month,current->date.day);
-            if ((!((cnt+1)%5)) && cnt) {
+            if ((!(cnt%5)) && cnt) {
                 cout << endl;
             }
         }
@@ -303,4 +304,58 @@ void showNotAcDate(struct List *head) {
 
     system("pause");
     cout << endl;
+}
+
+/**
+ * @func 删除第一个节点，日期非法的节点，最后一个节点
+ * @param head 链表头指针
+ */
+void deleteList(struct List *head)
+{
+    struct List *current,*prev;
+    current=head->next;
+    //删除第一个节点
+    deleteHead(head);
+    while (current) {
+        if (!isAc(current->date.year,current->date.month,current->date.day)) {
+            prev->next=current->next;
+//            free(current);
+            current = prev;
+        }
+        prev = current;
+        current = current->next;
+    }
+    //删除最后一个节点
+    deleteTail(head);
+    cout << "删除成功" << endl;
+    system("pause");
+    cout << endl;
+}
+
+/**
+ * @func 删除第一个节点(不算哨兵节点)
+ * @param head
+ */
+void deleteHead(struct List *head) {
+    struct List *current;
+    current = head->next;
+    head->next = current->next;
+    free(current);
+}
+
+/**
+ * @func 删除最后一个节点
+ * @param head
+ */
+void deleteTail(struct List *head) {
+    struct List *prev = head;
+//    if (head->next == NULL) {
+//        free(head);
+//        head = NULL;
+//    }
+    while (prev->next->next) {
+        prev = prev->next;
+    }
+    free(prev->next);
+    prev->next = NULL;
 }

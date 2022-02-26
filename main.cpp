@@ -69,6 +69,7 @@ int main() {
                 showNotAcDate(head);
                 break;
             case 'D':
+                deleteList(head);
                 break;
             case 'I':
                 break;

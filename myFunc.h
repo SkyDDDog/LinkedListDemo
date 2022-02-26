@@ -27,3 +27,9 @@ bool saveInFile(struct List *head);
 bool isAc(int year,int month,int day);
 //输出不合法日期
 void showNotAcDate(struct List *head);
+//删除节点
+void deleteList(struct List *head);
+//删除第一个节点(不算哨兵节点)
+void deleteHead(struct List *head);
+//删除最后一个节点
+void deleteTail(struct List *head);
