@@ -158,15 +158,16 @@ void showAll(struct List *head) {
     struct List *current;
     current = head->next;
     int row=1;
-    while (current) {
-        printf("%2d:",row);
-        for (int i = 0; i < 5 && current; ++i) {
-            printf(" %04d.%02d.%02d "
-                    ,current->date.year,current->date.month,current->date.day);
-            current = current->next;
+    for (int i = 0; current; ++i,current = current->next) {
+        if (!(i%5)) {
+            printf("%2d:",row);
+            row++;
         }
-        cout << endl;
-        row++;
+        printf(" %04d.%02d.%02d "
+                ,current->date.year,current->date.month,current->date.day);
+        if ((!((i+1)%5)) && i) {
+            cout << endl;
+        }
     }
 }
 
@@ -179,24 +180,21 @@ void showList(struct List *head,int n) {
     struct List *current;
     int row = 1, cnt = n;
     current=head->next;
-//    while (current) {
-        for (int i = 0; i < n && current; ++i,--cnt) {
-            if (!(i%5)) {
-                printf("%2d:",row);
-                row++;
-            }
-            printf(" %04d.%02d.%02d "
-                   ,current->date.year,current->date.month,current->date.day);
-            current = current->next;
-            if ((!((i+1)%5)) && i) {
-                cout << endl;
-            }
-            if(!cnt) {
-                cout << endl;
-                break;
-            }
+    for (int i = 0; i < n && current; ++i,--cnt,current = current->next) {
+        if (!(i%5)) {
+            printf("%2d:",row);
+            row++;
         }
-//    }
+        printf(" %04d.%02d.%02d "
+               ,current->date.year,current->date.month,current->date.day);
+        if ((!((i+1)%5)) && i) {
+            cout << endl;
+        }
+        if(!cnt) {
+            cout << endl;
+            break;
+        }
+    }
 }
 
 /**
