@@ -57,31 +57,22 @@ int main() {
                 showList(head);
                 break;
             case 'S':
-
                 break;
             case 'X':
-
                 break;
             case 'N':
-
                 break;
             case 'D':
-
                 break;
             case 'I':
-
                 break;
             case 'T':
-
                 break;
             case 'A':
-
                 break;
             case 'P':
-
                 break;
             case 'F':
-
                 break;
         }
     }

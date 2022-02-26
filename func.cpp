@@ -104,13 +104,11 @@ struct List* createList(int n) {
     head=(struct List *)malloc(sizeof(struct List));
     //头结点(哨兵)的数据域为空！
     head->next=NULL;
+    srand(time(NULL));
     for (int i=0;i<n;i++) {
         node=(struct List *)malloc(sizeof(struct List));
-        srand(time(NULL));
         node->date.day = rand()%31+1;
-        srand(time(NULL));
         node->date.month = rand()%12+1;
-        srand(time(NULL));
         node->date.year = rand()%100+1921;
         node->next=head->next;
         head->next=node;
