@@ -2,6 +2,7 @@
  * @author 222100209_李炎东
  * @version 1.0
  * @date 2022/2/25
+ * @note 本项目在github(https://github.com/SkyDDDog/LinkedListDemo.git)进行托管备份
  * A LinkedList Demo
  *  1)显示版权(Copyright)信息,显示(系统)当前的日期,显示用户(功能)选择菜单
  *  2)获得用户的(功能)选择
@@ -23,14 +24,67 @@
  *  15)链表翻转(不建立新的表来实现)
  */
 #include <iostream>
+#include <cstdlib>
 #include "constants.h"
 #include "myFunc.h"
 
 using namespace std;
 
-int main() {
+struct List {
+    struct Date {
+        int year;
+        int month;
+        int day;
+    }date;
+    struct List *next;
+};
 
-    cout << getChoice() << endl;
+int main() {
+    //初始化链表
+    List *head = (List *) malloc(sizeof(List));
+    //用户的选择
+    char choice;
+    while ((choice=getChoice())!='Q') {
+        if (choice!='C' && head->next==NULL) {
+            cout << "\a\n链表为空!请先创建链表!\n" << endl;
+        }
+        switch (choice) {
+            case 'C':
+                createList();
+                break;
+            case 'O':
+
+                break;
+            case 'S':
+
+                break;
+            case 'X':
+
+                break;
+            case 'N':
+
+                break;
+            case 'D':
+
+                break;
+            case 'I':
+
+                break;
+            case 'T':
+
+                break;
+            case 'A':
+
+                break;
+            case 'P':
+
+                break;
+            case 'F':
+
+                break;
+        }
+    }
+    freeList(head);
 
     system("pause");
     return 0;

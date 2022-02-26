@@ -6,8 +6,18 @@
 #include <ctime>
 #include <conio.h>
 #include <cstring>
+#include <cstdlib>
 
 using namespace std;
+
+struct List {
+    struct Date {
+        int year;
+        int month;
+        int day;
+    }date;
+    struct List *next;
+};
 
 /**
  * @func 输出版权信息
@@ -61,18 +71,78 @@ void menu() {
     cout << endl;
 }
 
+/**
+ * @func 获得用户选择
+ * @param no param
+ * @return 用户输入的字符(转化为大写)
+ */
 char getChoice() {
     char choice = 'Q';
     char option[] = "C,O,S,X,N,D,I,T,A,P,F,Q";
     while (true) {
         menu();
-        cout << "请选择(" << option << "):" << endl;
+        cout << "请选择(" << option << "):";
         choice = char(toupper(getche()));
         putchar('\n');
         if (strchr(option,choice) && choice!=',') {
             break;
         }
         cout << "\a\n选择错误,请重新输入......\n" << endl;
+        system("pause");
+        cout << endl;
     }
     return choice;
+}
+
+/**
+ * @func 初始化链表
+ * @param n 创建的节点数
+ * @return 链表头指针
+ */
+struct List* createList(int n) {
+    struct List *head,*node;
+    head=(struct List *)malloc(sizeof(struct List));
+    //头结点(哨兵)的数据域为空！
+    head->next=NULL;
+    for (int i=0;i<n;i++) {
+        node=(struct List *)malloc(sizeof(struct List));
+        node->date.day = 0;
+        node->date.month = 0;
+        node->date.year = 0;
+        node->next=head->next;
+        head->next=node;
+    }
+    return head;
+}
+
+/**
+ * @func 重载createList()方法
+ * @return
+ */
+struct List* createList() {
+    int n;
+    struct List *head;
+    cout << "请输入要创建的节点数:";
+    cin >> n;
+    head = createList(n);
+    cout << "成功创建含有" << n << "个节点的链表!\n" << endl;
+
+    system("pause");
+    cout << endl;
+    return head;
+}
+
+/**
+ * @func 释放链表
+ * @param head
+ */
+void freeList(struct List * head)
+{
+    struct List *current;
+    current = head;
+    while (head!=NULL) {
+        current=head;
+        head = current->next;
+        free(current);
+    }
 }
