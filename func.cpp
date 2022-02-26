@@ -239,8 +239,7 @@ bool saveInFile(struct List *head) {
     for (struct List *current = head->next; current ; current=current->next) {
         outfile << current->date.year << '.'
                 << current->date.month << '.'
-                << current->date.day << '.'
-                << endl;
+                << current->date.day << endl;
     }
     outfile.close();
     cout << "文件输入成功,请打开\"D:\\tempFile\\test.db\"查看结果" << endl;
