@@ -75,6 +75,7 @@ int main() {
                 printPrime(head);
                 break;
             case 'F':
+                reverseList(head);
                 break;
         }
     }

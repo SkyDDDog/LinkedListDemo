@@ -619,3 +619,28 @@ void printPrime(struct List *head) {
     system("pause");
     cout << endl;
 }
+
+/**
+ * @func 反转链表
+ * @param head 链表头指针
+ */
+void reverseList(struct List * head) {
+    struct List *current,*prev,*post;
+    prev = NULL;
+    current = head->next;
+    post = current->next;
+    if (current == NULL || post == NULL)
+        return;
+    while (post!=NULL) {
+        current->next = prev;
+        prev = current;
+        current = post;
+        post = post->next;
+    }
+    current->next = prev;
+    head->next = current;
+
+    cout << "链表翻转成功!" << endl;
+    system("pause");
+    cout << endl;
+}

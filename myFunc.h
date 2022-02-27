@@ -65,3 +65,5 @@ bool isPrime(int n);
 bool isPrime(struct Date date);
 //输出年月日均为素数的节点
 void printPrime(struct List *head);
+//翻转链表
+void reverseList(struct List *head);
