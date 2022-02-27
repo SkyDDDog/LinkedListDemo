@@ -23,6 +23,8 @@ void showList(struct List *head,int n);
 void showList(struct List *head);
 //将链表数据存入文件
 bool saveInFile(struct List *head);
+//判闰年
+bool isLeapYear(int year);
 //判断日期合法性
 bool isAc(int year,int month,int day);
 //输出不合法日期
@@ -45,3 +47,9 @@ void insertPrev(struct List *head);
 void insertPost(struct List *head);
 //插入以上全部节点
 void insertNode(struct List *head);
+//计算距0000-00-00的天数
+int getDays(struct Date date);
+//计算距1901-01-01的天数
+int getSDays(struct Date date);
+//显示链表每个节点的日期和距1901-01-01的天数
+void showListDays(struct List *head);

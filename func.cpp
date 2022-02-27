@@ -253,6 +253,19 @@ bool saveInFile(struct List *head) {
 }
 
 /**
+ * @func 判闰年
+ * @param year
+ * @return 是否是闰年
+ */
+bool isLeapYear(int year) {
+    if ((year%4 == 0 && year%100 != 0) || year%400 == 0) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+/**
  * @func 判断日期合法性
  * @param year 年
  * @param month 月
@@ -260,7 +273,7 @@ bool saveInFile(struct List *head) {
  * @return 日期是否合法
  */
 bool isAc(int year,int month,int day) {
-    if (month == 2 && (year % 4 == 0 && year % 100 != 0) || (year % 400 == 0)) {
+    if (month == 2 && isLeapYear(year)) {
         if (day > 29) {
             return false;
         } else {
@@ -411,6 +424,7 @@ void insertPrev(struct List *head) {
     struct List *current,*node;
     current = head;
     node = (struct List *)malloc(sizeof(struct List));
+    node->date = getCurTime();
     while (current->next) {
         if (current->next->date.year >= node->date.year
             && current->next->date.month >= node->date.month
@@ -431,10 +445,11 @@ void insertPost(struct List *head) {
     struct List *current,*node;
     current = head;
     node = (struct List *)malloc(sizeof(struct List));
+    node->date = getCurTime();
     while (current) {
-        if (current->date.year >= node->date.year
-            && current->date.month >= node->date.month
-            && current->date.day > node->date.day) {
+        if (current->date.year <= node->date.year
+            && current->date.month <= node->date.month
+            && current->date.day < node->date.day) {
             node->next = current->next;
             current->next = node;
             break;
@@ -456,6 +471,59 @@ void insertNode(struct List *head) {
     insertPrev(head);
     insertPost(head);
     cout << "节点插入成功" << endl;
+    system("pause");
+    cout << endl;
+}
+
+/**
+ * @func 计算距0000-00-00多少天
+ * @param date 日期
+ * @return 天数
+ */
+int getDays(struct Date date) {
+    //数组定义每个月的天数 days_month[0]留空
+    int days_month[13] = { 0,31,28,31,30,31,30,31,31,30,31,30,31 };
+    int sum=0;
+    for (int i = 0; i < date.year; ++i) {
+        if (isLeapYear(date.year)) {
+            sum += 366;
+        } else {
+            sum += 365;
+        }
+    }
+    if (isLeapYear(date.year)) {
+        days_month[2] = 29;
+    } else {
+        days_month[2] = 28;
+    }
+    for (int i = 0; i < date.month; ++i) {
+        sum += days_month[i];
+    }
+
+    return sum + date.day;
+}
+
+/**
+ * @func 计算距1901-01-01的天数
+ * @param date 日期
+ * @return 天数
+ */
+int getSDays(struct Date date) {
+    struct Date origin = {1901,1,1};
+
+    return (getDays(date) - getDays(origin));
+}
+
+/**
+ * @func 显示链表每个节点的日期和距1901-01-01的天数
+ * @param head 链表头指针
+ */
+void showListDays(struct List *head) {
+    struct List *current;
+    for (current = head->next; current ; current = current->next) {
+        printf("%04d-%02d-%02d\t距1901-01-01%6d 天\n"
+            ,current->date.year,current->date.month,current->date.day,getSDays(current->date));
+    }
     system("pause");
     cout << endl;
 }

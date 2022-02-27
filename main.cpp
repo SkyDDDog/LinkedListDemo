@@ -77,6 +77,7 @@ int main() {
                 insertNode(head);
                 break;
             case 'T':
+                showListDays(head);
                 break;
             case 'A':
                 break;
