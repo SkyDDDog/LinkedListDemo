@@ -79,7 +79,7 @@ void menu() {
  */
 char getChoice() {
     char choice = 'Q';
-    char option[] = "C,O,S,X,N,D,I,T,A,P,F,Q";
+    char option[] = "C,S,F,E,N,D,I,T,A,P,R,Q";
     while (true) {
         menu();
         cout << "ÇëÑ¡Ôñ(" << option << "):";
@@ -198,7 +198,7 @@ void showList(struct List *head,int n) {
             break;
         }
     }
-
+    cout << endl;
     system("pause");
     cout << endl;
 }

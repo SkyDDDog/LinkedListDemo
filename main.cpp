@@ -88,6 +88,11 @@ int main() {
             case 'R':
                 reverseList(head);
                 break;
+            default:
+                cout << "没有这个选项，请重新选择!" << endl;
+                system("pause");
+                cout << endl;
+                break;
         }
     }
     freeList(head);
