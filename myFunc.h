@@ -1,7 +1,11 @@
 /**
  * @author 222100209_李炎东
  * @date 2022/2/25
+ * @note 在这定义了所有的函数声明
  */
+
+#ifndef LINKEDLISTDEMO_MYFUNC_H
+#define LINKEDLISTDEMO_MYFUNC_H
 
 //显示版权信息
 void copyRight();
@@ -67,3 +71,5 @@ bool isPrime(struct Date date);
 void printPrime(struct List *head);
 //翻转链表
 void reverseList(struct List *head);
+
+#endif //LINKEDLISTDEMO_MYFUNC_H
