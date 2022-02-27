@@ -13,17 +13,6 @@
 
 using namespace std;
 
-struct Date {
-    int year;
-    int month;
-    int day;
-};
-
-struct List {
-    struct Date date;
-    struct List *next;
-};
-
 /**
  * @func 输出版权信息
  * @param no param
@@ -524,9 +513,7 @@ int getDays(struct Date date) {
  * @return 天数
  */
 int getSDays(struct Date date) {
-    struct Date origin = {1901,1,1};
-
-    return (getDays(date) - getDays(origin));
+    return (getDays(date) - getDays(cDate));
 }
 
 /**
@@ -565,6 +552,10 @@ void sortByAsc(struct List *head) {
     }
 }
 
+/**
+ * @func 日期节点升序(从小到大)排列后输出
+ * @param head
+ */
 void printByAsc(struct List *head) {
     sortByAsc(head);
     showAll(head);

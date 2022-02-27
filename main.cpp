@@ -31,17 +31,6 @@
 
 using namespace std;
 
-struct Date {
-    int year;
-    int month;
-    int day;
-};
-
-struct List {
-    struct Date date;
-    struct List *next;
-};
-
 int main() {
     //≥ı ºªØ¡¥±Ì
     List *head = (List *) malloc(sizeof(List));
