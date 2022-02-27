@@ -8,6 +8,7 @@
 #include <cstring>
 #include <cstdlib>
 #include <fstream>
+#include <cmath>
 #include "constants.h"
 #include "myFunc.h"
 
@@ -564,3 +565,57 @@ void printByAsc(struct List *head) {
     cout << endl;
 }
 
+/**
+ * @func 判素数
+ * @param n 要被判断的数
+ * @return 是否为素数
+ */
+bool isPrime(int n) {
+    int k = int(sqrt(n)) + 1;
+    if(n<2)
+        return false;
+    if(n==2)
+        return true;
+    if(n%2==0)
+        return false;
+    for(int i = 3; i <= k ; i++)
+    {
+        if(n%i==0)
+            return true;
+    }
+    return true;
+}
+
+/**
+ * @func 判断日期是否为素数
+ * @param date 日期
+ * @return 是否为素数
+ */
+bool isPrime(struct Date date) {
+    if (isPrime(date.year) && isPrime(date.month) && isPrime(date.day)) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+/**
+ * @func 输出年月日均为素数的节点
+ * @param head 链表头指针
+ */
+void printPrime(struct List *head) {
+    int cnt = 0;
+    for (struct List *current = head; current ; current = current->next) {
+        if (isPrime(current->date)) {
+            cnt++;
+            printf(" %04d.%02d.%02d "
+                    ,current->date.year,current->date.month,current->date.day);
+            if ((!(cnt%5)) && cnt) {
+                cout << endl;
+            }
+        }
+    }
+    cout << endl;
+    system("pause");
+    cout << endl;
+}

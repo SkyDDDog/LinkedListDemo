@@ -72,6 +72,7 @@ int main() {
                 printByAsc(head);
                 break;
             case 'P':
+                printPrime(head);
                 break;
             case 'F':
                 break;

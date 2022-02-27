@@ -59,3 +59,9 @@ void showListDays(struct List *head);
 void sortByAsc(struct List *head);
 //升序排序后输出
 void printByAsc(struct List *head);
+//判素数
+bool isPrime(int n);
+//判日期是否为素数(方法重载)
+bool isPrime(struct Date date);
+//输出年月日均为素数的节点
+void printPrime(struct List *head);
