@@ -3,6 +3,7 @@
  * @version 1.0
  * @date 2022/2/25
  * @note 本项目在github(https://github.com/SkyDDDog/LinkedListDemo.git)进行托管备份
+ *       (所以完全不用担心抄袭，在github上可以看到我一步一步提交代码的过程)
  * A LinkedList Demo
  *  1)显示版权(Copyright)信息,显示(系统)当前的日期,显示用户(功能)选择菜单
  *  2)获得用户的(功能)选择
