@@ -116,7 +116,7 @@ struct List* createList(int n) {
     head->next=NULL;
     srand(time(NULL));
     for (int i=0;i<n;i++) {
-        node=(struct List *)malloc(sizeof(struct List));
+        node = (struct List *)malloc(sizeof(struct List));
         node->date.day = rand()%31+1;
         node->date.month = rand()%12+1;
         node->date.year = rand()%100+1921;
@@ -312,7 +312,7 @@ void showNotAcDate(struct List *head) {
  * @func 删除第一个节点，日期非法的节点，最后一个节点
  * @param head 链表头指针
  */
-void deleteList(struct List *head)
+void deleteNode(struct List *head)
 {
     struct List *current,*prev;
     current=head->next;
@@ -373,4 +373,89 @@ struct Date getCurTime() {
     p = gmtime(&timep);
     struct Date date = {1900 + p->tm_year,1 + p->tm_mon,p->tm_mday};
     return date;
+}
+
+/**
+ * @func 插入当前日期成为第一个节点
+ * @param head 链表头指针
+ */
+void insertHead(struct List *head) {
+    struct List *node;
+    node = (struct List *)malloc(sizeof(struct List));
+    node->date = getCurTime();
+    node->next = head->next;
+    head->next = node;
+}
+
+/**
+ * @func 插入当前日期成为链表最后一个节点
+ * @param head 链表头指针
+ */
+void insertTail(struct List *head) {
+    struct List *current,*node;
+    current = head;
+    node = (struct List *)malloc(sizeof(struct List));
+    node->date = getCurTime();
+    node->next = NULL;
+    while (current->next) {
+        current = current->next;
+    }
+    current->next = node;
+}
+
+/**
+ * @func 插入到第一个大于当前日期的节点前面
+ * @param head 链表头指针
+ */
+void insertPrev(struct List *head) {
+    struct List *current,*node;
+    current = head;
+    node = (struct List *)malloc(sizeof(struct List));
+    while (current->next) {
+        if (current->next->date.year >= node->date.year
+            && current->next->date.month >= node->date.month
+            && current->next->date.day > node->date.day) {
+            node->next = current->next;
+            current->next = node;
+            break;
+        }
+        current = current->next;
+    }
+}
+
+/**
+ * @func 插入到第一个小于当前日期的节点后面
+ * @param head 链表头指针
+ */
+void insertPost(struct List *head) {
+    struct List *current,*node;
+    current = head;
+    node = (struct List *)malloc(sizeof(struct List));
+    while (current) {
+        if (current->date.year >= node->date.year
+            && current->date.month >= node->date.month
+            && current->date.day > node->date.day) {
+            node->next = current->next;
+            current->next = node;
+            break;
+        }
+        current = current->next;
+    }
+}
+
+/**
+ * @func 将用当前日期构造的一个新结点加到链头
+ *       将用当前日期构造的一个新结点加到链尾
+ *       将用当前日期构造的一个新结点插入到第一个大于该结点日期的前面
+ *       将用当前日期构造的一个新结点插入到第一个小于该结点日期的后面
+ * @param head
+ */
+void insertNode(struct List *head) {
+    insertHead(head);
+    insertTail(head);
+    insertPrev(head);
+    insertPost(head);
+    cout << "节点插入成功" << endl;
+    system("pause");
+    cout << endl;
 }

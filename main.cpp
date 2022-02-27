@@ -49,10 +49,9 @@ int main() {
     while ((choice=getChoice())!='Q') {
         if (choice!='C' && head->next==NULL) {
             cout << "\a\n链表为空!请先创建链表!\n" << endl;
-            continue;
-
             system("pause");
             cout << endl;
+            continue;
         }
         switch (choice) {
             case 'C':
@@ -71,9 +70,10 @@ int main() {
                 showNotAcDate(head);
                 break;
             case 'D':
-                deleteList(head);
+                deleteNode(head);
                 break;
             case 'I':
+                insertNode(head);
                 break;
             case 'T':
                 break;
@@ -86,7 +86,7 @@ int main() {
         }
     }
     freeList(head);
-
+    cout << "链表释放成功!感谢您的使用!" << endl;
     system("pause");
     return 0;
 }

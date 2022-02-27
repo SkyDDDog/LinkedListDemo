@@ -28,11 +28,20 @@ bool isAc(int year,int month,int day);
 //输出不合法日期
 void showNotAcDate(struct List *head);
 //删除节点
-void deleteList(struct List *head);
+void deleteNode(struct List *head);
 //删除第一个节点(不算哨兵节点)
 void deleteHead(struct List *head);
 //删除最后一个节点
 void deleteTail(struct List *head);
 //获取当前时间
 struct Date getCurTime();
-
+//插入到链头
+void insertHead(struct List *head);
+//插入到链尾
+void insertTail(struct List *head);
+//插入到第一个大于当前日期的节点前面
+void insertPrev(struct List *head);
+//插入到第一个小于当前日期的节点后面
+void insertPost(struct List *head);
+//插入以上全部节点
+void insertNode(struct List *head);
