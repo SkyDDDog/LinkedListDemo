@@ -37,6 +37,8 @@ void deleteHead(struct List *head);
 void deleteTail(struct List *head);
 //获取当前时间
 struct Date getCurTime();
+//判断日期比较日期大小
+bool isBiggerDate(struct Date d1,struct Date d2);
 //插入到链头
 void insertHead(struct List *head);
 //插入到链尾
@@ -53,3 +55,7 @@ int getDays(struct Date date);
 int getSDays(struct Date date);
 //显示链表每个节点的日期和距1901-01-01的天数
 void showListDays(struct List *head);
+//升序排列节点
+void sortByAsc(struct List *head);
+//升序排序后输出
+void printByAsc(struct List *head);

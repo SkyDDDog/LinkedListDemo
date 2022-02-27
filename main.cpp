@@ -80,6 +80,7 @@ int main() {
                 showListDays(head);
                 break;
             case 'A':
+                printByAsc(head);
                 break;
             case 'P':
                 break;

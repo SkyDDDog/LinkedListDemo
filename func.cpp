@@ -389,6 +389,25 @@ struct Date getCurTime() {
 }
 
 /**
+ * @func 比较日期大小
+ * @param d1 第一个日期
+ * @param d2 第二个日期
+ * @return d1>d2 返回true
+ */
+bool isBiggerDate(struct Date d1,struct Date d2) {
+    if (d1.year > d2.year) {
+        return true;
+    }
+    if (d1.year == d2.year && d1.month > d2.month) {
+        return true;
+    }
+    if (d1.year == d2.year && d1.month == d2.month && d1.day > d2.day) {
+        return true;
+    }
+    return false;
+}
+
+/**
  * @func 插入当前日期成为第一个节点
  * @param head 链表头指针
  */
@@ -426,9 +445,7 @@ void insertPrev(struct List *head) {
     node = (struct List *)malloc(sizeof(struct List));
     node->date = getCurTime();
     while (current->next) {
-        if (current->next->date.year >= node->date.year
-            && current->next->date.month >= node->date.month
-            && current->next->date.day > node->date.day) {
+        if (isBiggerDate(current->next->date,node->date)) {
             node->next = current->next;
             current->next = node;
             break;
@@ -447,9 +464,7 @@ void insertPost(struct List *head) {
     node = (struct List *)malloc(sizeof(struct List));
     node->date = getCurTime();
     while (current) {
-        if (current->date.year <= node->date.year
-            && current->date.month <= node->date.month
-            && current->date.day < node->date.day) {
+        if (!isBiggerDate(current->next->date,node->date)) {
             node->next = current->next;
             current->next = node;
             break;
@@ -524,6 +539,36 @@ void showListDays(struct List *head) {
         printf("%04d-%02d-%02d\t距1901-01-01%6d 天\n"
             ,current->date.year,current->date.month,current->date.day,getSDays(current->date));
     }
+    system("pause");
+    cout << endl;
+}
+
+/**
+ * @func 升序(从小到大)排列日期节点
+ * @param head
+ */
+void sortByAsc(struct List *head) {
+    struct List *current,*post;
+    struct Date temp;
+    current = head->next;
+    while (current) {
+        post = current->next;
+        while (post) {
+            if (isBiggerDate(current->date,post->date)) {
+                temp = current->date;
+                current->date = post->date;
+                post->date = temp;
+            }
+            post = post->next;
+        }
+        current = current->next;
+    }
+}
+
+void printByAsc(struct List *head) {
+    sortByAsc(head);
+    showAll(head);
+    cout << "已将数据全部按日期从小到大排序!" << endl;
     system("pause");
     cout << endl;
 }
