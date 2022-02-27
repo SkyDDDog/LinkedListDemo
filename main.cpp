@@ -44,37 +44,48 @@ int main() {
             continue;
         }
         switch (choice) {
+            // Create
             case 'C':
                 head = createList();
                 break;
-            case 'O':
+            // Show
+            case 'S':
                 showList(head);
                 break;
-            case 'S':
+            // FIle
+            case 'F':
                 saveInFile(head);
                 break;
-            case 'X':
+            // Every
+            case 'E':
                 showAll(head);
                 break;
+            // Not legal
             case 'N':
                 showNotAcDate(head);
                 break;
+            // Delete
             case 'D':
                 deleteNode(head);
                 break;
+            // Insert
             case 'I':
                 insertNode(head);
                 break;
+            // Time
             case 'T':
                 showListDays(head);
                 break;
+            // Asc
             case 'A':
                 printByAsc(head);
                 break;
+            // Prime
             case 'P':
                 printPrime(head);
                 break;
-            case 'F':
+            // Reverse
+            case 'R':
                 reverseList(head);
                 break;
         }

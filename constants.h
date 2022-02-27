@@ -19,6 +19,8 @@ struct List {
     struct List *next;
 };
 
+//菜单长度
+const int menuLength = 80;
 // 用于文件处理
 // 但是现在还没完善
 const int maxFileName = 100;
