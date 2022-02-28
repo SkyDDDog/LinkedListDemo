@@ -24,7 +24,6 @@ const int menuLength = 80;
 // 用于文件处理
 // 但是现在还没完善
 const int maxFileName = 100;
-const char fileName[] = "test.db";
 // 用于比较的日期
 // 这里是用于计算距1901-01-01的天数
 const struct Date cDate = {1901,01,01};

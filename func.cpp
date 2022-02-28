@@ -223,9 +223,11 @@ void showList(struct List *head) {
  * @param head 链表头指针
  * @return 是否存入成功
  */
-bool saveInFile(struct List *head) {
+bool saveInFile(struct List *head,char *filename) {
+    string f = ".\\";
+    f.append(filename).append(".db");
     ofstream outfile;
-    outfile.open("D:\\tempFile\\test.db");
+    outfile.open(f.c_str());
     if (!outfile) {
         cout << "\a文件打开失败!" << endl;
         return false;
@@ -236,11 +238,28 @@ bool saveInFile(struct List *head) {
                 << current->date.day << endl;
     }
     outfile.close();
-    cout << "文件输入成功,请打开\"D:\\tempFile\\test.db\"查看结果" << endl;
+    cout << "文件输入成功,请打开 "+ f +" 查看结果" << endl;
 
     system("pause");
     cout << endl;
     return true;
+}
+
+/**
+ * @func 将数据存入文件，要求用户输入文件名
+ * @param head
+ * @return
+ */
+bool saveInFile(struct List *head) {
+    char fileName[maxFileName];
+    cout << "请输入文件名:";
+    cin >> fileName;
+    if (saveInFile(head,fileName)) {
+        return true;
+    } else {
+        return false;
+    }
+
 }
 
 /**

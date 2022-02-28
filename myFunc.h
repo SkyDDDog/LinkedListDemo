@@ -26,6 +26,8 @@ void showAll(struct List *head);
 void showList(struct List *head,int n);
 void showList(struct List *head);
 //将链表数据存入文件
+bool saveInFile(struct List *head,char *filename);
+//将链表数据存入文件(重载，要求用户输入文件名)
 bool saveInFile(struct List *head);
 //判闰年
 bool isLeapYear(int year);
