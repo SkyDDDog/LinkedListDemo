@@ -41,7 +41,7 @@ void showTime() {
  * @param no param
  */
 void menu() {
-    for (int i = 0; i < menuLength; ++i) {
+    for (int i = 0; i < MENU_LENGTH; ++i) {
         cout << '=';
     }
     cout << endl;
@@ -49,7 +49,7 @@ void menu() {
     cout << endl;
     showTime();
     putchar('\n');
-    for (int i = 0; i < menuLength; ++i) {
+    for (int i = 0; i < MENU_LENGTH; ++i) {
         cout << '=';
     }
     cout << endl;
@@ -66,7 +66,7 @@ void menu() {
          << "$  P:查找链表中日期数据均为素数的节点                                          $" << endl
          << "$  R:链表翻转                                                                  $" << endl
          << "$  Q:退出系统                                                                  $" << endl;
-    for (int i = 0; i < menuLength; ++i) {
+    for (int i = 0; i < MENU_LENGTH; ++i) {
         cout << '=';
     }
     cout << endl;
@@ -251,7 +251,7 @@ bool saveInFile(struct List *head,char *filename) {
  * @return
  */
 bool saveInFile(struct List *head) {
-    char fileName[maxFileName];
+    char fileName[MAX_FILENAME];
     cout << "请输入文件名:";
     cin >> fileName;
     if (saveInFile(head,fileName)) {
