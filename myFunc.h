@@ -14,7 +14,7 @@ void showTime();
 //显示菜单
 void menu();
 //获取用户选择(集成版权信息，时间，菜单等)
-char getChoice();
+char getChoice(const char option[],void (* menu)());
 //创建链表(及其重载方法)并随机产生日期数据
 struct List* createList(int n);
 struct List* createList();
@@ -35,8 +35,12 @@ bool isLeapYear(int year);
 bool isAc(int year,int month,int day);
 //输出不合法日期
 void showNotAcDate(struct List *head);
+//删除节点的二级菜单
+void deleteMenu();
 //删除节点
 void deleteNode(struct List *head);
+//删除非法日期节点
+void deleteNoAcNode(struct List *head);
 //删除第一个节点(不算哨兵节点)
 void deleteHead(struct List *head);
 //删除最后一个节点

@@ -20,7 +20,11 @@ struct List {
 };
 
 //菜单长度
-const int MENU_LENGTH = 80;
+const int MENU_LENGTH_1 = 80;
+const int MENU_LENGTH_2 = 50;
+//菜单选项
+const char OPTION_1[] = "C,S,F,E,N,D,I,T,A,P,R,Q";
+const char OPTION_2[] = "F,L,N,Q";
 // 用于文件处理
 // 但是现在还没完善
 const int MAX_FILENAME = 100;

@@ -36,7 +36,7 @@ int main() {
     List *head = (List *) malloc(sizeof(List));
     //用户的选择
     char choice;
-    while ((choice=getChoice())!='Q') {
+    while ((choice = getChoice(OPTION_1,menu))!='Q') {
         if (choice!='C' && head->next==NULL) {
             cout << "\a\n链表为空!请先创建链表!\n" << endl;
             system("pause");
@@ -91,7 +91,9 @@ int main() {
         }
     }
     freeList(head);
+    cout << endl;
     cout << "链表释放成功!感谢您的使用!" << endl;
+    cout << endl;
     system("pause");
     return 0;
 }

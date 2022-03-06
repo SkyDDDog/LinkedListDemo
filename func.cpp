@@ -41,7 +41,7 @@ void showTime() {
  * @param no param
  */
 void menu() {
-    for (int i = 0; i < MENU_LENGTH; ++i) {
+    for (int i = 0; i < MENU_LENGTH_1; ++i) {
         cout << '=';
     }
     cout << endl;
@@ -49,7 +49,7 @@ void menu() {
     cout << endl;
     showTime();
     putchar('\n');
-    for (int i = 0; i < MENU_LENGTH; ++i) {
+    for (int i = 0; i < MENU_LENGTH_1; ++i) {
         cout << '=';
     }
     cout << endl;
@@ -66,7 +66,7 @@ void menu() {
          << "$  P:查找链表中日期数据均为素数的节点                                          $" << endl
          << "$  R:链表翻转                                                                  $" << endl
          << "$  Q:退出系统                                                                  $" << endl;
-    for (int i = 0; i < MENU_LENGTH; ++i) {
+    for (int i = 0; i < MENU_LENGTH_1; ++i) {
         cout << '=';
     }
     cout << endl;
@@ -77,9 +77,9 @@ void menu() {
  * @param no param
  * @return 用户输入的字符(转化为大写)
  */
-char getChoice() {
+char getChoice(const char option[],void (* menu)()) {
     char choice = 'Q';
-    char option[] = "C,S,F,E,N,D,I,T,A,P,R,Q";
+//    char option[] = "C,S,F,E,N,D,I,T,A,P,R,Q";
     while (true) {
         menu();
         cout << "请选择(" << option << "):";
@@ -332,27 +332,75 @@ void showNotAcDate(struct List *head) {
 }
 
 /**
+ * @func 删除节点的二级菜单
+ */
+void deleteMenu() {
+    // 二级菜单
+    cout << endl;
+    for (int i = 0; i < MENU_LENGTH_2; ++i) {
+        cout << '-';
+    }
+    cout << endl;
+    cout << "F:删除第一个节点" << endl;
+    cout << "L:删除最后一个节点" << endl;
+    cout << "N:删除非法节点" << endl;
+    cout << "Q:退出二级菜单" << endl;
+    for (int i = 0; i < MENU_LENGTH_2; ++i) {
+        cout << '-';
+    }
+    cout << endl;
+}
+
+/**
+ * @func 删除节点(二级菜单)
+ * @param head
+ */
+void deleteNode(struct List *head) {
+    char choice;
+    while ((choice = getChoice(OPTION_2,deleteMenu)) != 'Q') {
+        switch (choice) {
+            // First Node
+            case 'F':
+                deleteHead(head);
+                break;
+            // Last Node
+            case 'L':
+                deleteTail(head);
+                break;
+            // Not Ac Node
+            case 'N':
+                deleteNoAcNode(head);
+        }
+    }
+    cout << endl;
+    cout << "您已退出删除菜单！" << endl;
+    cout << endl;
+    system("pause");
+    cout << endl;
+}
+
+/**
  * @func 删除第一个节点，日期非法的节点，最后一个节点
  * @param head 链表头指针
  */
-void deleteNode(struct List *head)
+void deleteNoAcNode(struct List *head)
 {
     struct List *current,*prev;
+    int cnt = 0;
     current=head->next;
-    //删除第一个节点
-    deleteHead(head);
     while (current) {
         if (!isAc(current->date.year,current->date.month,current->date.day)) {
             prev->next=current->next;
 //            free(current);
             current = prev;
+            cnt++;
         }
         prev = current;
         current = current->next;
     }
-    //删除最后一个节点
-    deleteTail(head);
-    cout << "删除成功" << endl;
+    cout << endl;
+    cout << "成功删除" << cnt << "个非法节点!" << endl;
+    cout << endl;
     system("pause");
     cout << endl;
 }
@@ -366,6 +414,11 @@ void deleteHead(struct List *head) {
     current = head->next;
     head->next = current->next;
     free(current);
+    cout << endl;
+    cout << "成功删除第一个节点" << endl;
+    cout << endl;
+    system("pause");
+    cout << endl;
 }
 
 /**
@@ -383,6 +436,11 @@ void deleteTail(struct List *head) {
     }
     free(prev->next);
     prev->next = NULL;
+    cout << endl;
+    cout << "成功删除最后一个节点" << endl;
+    cout << endl;
+    system("pause");
+    cout << endl;
 }
 
 /**
