@@ -79,6 +79,8 @@ bool isPrime(struct Date date);
 void printPrime(struct List *head);
 //·­×ªÁ´±í
 void reverseList(struct List *head);
+//ÇåÆÁ
+void clear();
 
 #define LINKEDLISTDEMO_MYFUNC_H
 #endif //LINKEDLISTDEMO_MYFUNC_H

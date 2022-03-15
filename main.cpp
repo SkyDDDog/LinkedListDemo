@@ -50,8 +50,8 @@ int main() {
             continue;
         }
         switch (choice) {
-            // Create
-            case 'C':
+            // Init
+            case 'I':
                 head = createList();
                 break;
             // Show
@@ -74,16 +74,16 @@ int main() {
             case 'D':
                 deleteNode(head);
                 break;
-            // Insert
-            case 'I':
+            // Add
+            case 'A':
                 insertNode(head);
                 break;
             // Time
             case 'T':
                 showListDays(head);
                 break;
-            // Asc
-            case 'A':
+            // Valid
+            case 'V':
                 printByAsc(head);
                 break;
             // Prime
@@ -93,6 +93,10 @@ int main() {
             // Reverse
             case 'R':
                 reverseList(head);
+                break;
+            // Clear
+            case 'C':
+                clear();
                 break;
         }
     }

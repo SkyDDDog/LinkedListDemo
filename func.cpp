@@ -435,7 +435,7 @@ int deleteHead(struct List *head) {
     head->next = current->next;
     free(current);
 
-    cout << endl;
+    return 1;
 }
 
 /**
@@ -733,6 +733,16 @@ void reverseList(struct List * head) {
     head->next = current;
 
     cout << "链表翻转成功!" << endl;
+    system("pause");
+    cout << endl;
+}
+
+/**
+ * @func 清屏
+ */
+void clear() {
+    system("cls");
+    cout << "清屏成功" << endl;
     system("pause");
     cout << endl;
 }
