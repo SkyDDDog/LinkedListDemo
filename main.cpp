@@ -24,14 +24,20 @@
  *  14)统计并输出年月日都是素数的结点
  *  15)链表翻转(不建立新的表来实现)
  */
-#include <iostream>
-#include <cstdlib>
+
 #include "constants.h"
 #include "myFunc.h"
+//#include "curl/curl.h"
+//#include "CommonTools.h"
 
 using namespace std;
 
 int main() {
+//    string strURL = "https://www.tianqiapi.com/api?version=v6&appid=45153396&appsecret=DCcwPX2k&city=%E7%A6%8F%E5%BB%BA";
+//    string strResponse;
+//    CURLcode nRes = CommonTools::HttpGet(strURL,strResponse,300);
+//    size_t nSrcLength = strResponse.length();
+
     //初始化链表
     List *head = (List *) malloc(sizeof(List));
     //用户的选择

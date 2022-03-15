@@ -5,7 +5,9 @@
  */
 
 #ifndef LINKEDLISTDEMO_MYFUNC_H
-#define LINKEDLISTDEMO_MYFUNC_H
+
+#include <iostream>
+#include <cstdlib>
 
 //显示版权信息
 void copyRight();
@@ -38,13 +40,13 @@ void showNotAcDate(struct List *head);
 //删除节点的二级菜单
 void deleteMenu();
 //删除节点
-void deleteNode(struct List *head);
+int deleteNode(struct List *head);
 //删除非法日期节点
-void deleteNoAcNode(struct List *head);
+int deleteNoAcNode(struct List *head);
 //删除第一个节点(不算哨兵节点)
-void deleteHead(struct List *head);
+int deleteHead(struct List *head);
 //删除最后一个节点
-void deleteTail(struct List *head);
+int deleteTail(struct List *head);
 //获取当前时间
 struct Date getCurTime();
 //判断日期比较日期大小
@@ -78,4 +80,5 @@ void printPrime(struct List *head);
 //翻转链表
 void reverseList(struct List *head);
 
+#define LINKEDLISTDEMO_MYFUNC_H
 #endif //LINKEDLISTDEMO_MYFUNC_H

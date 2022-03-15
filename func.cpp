@@ -110,7 +110,7 @@ struct List* createList(int n) {
         node = (struct List *)malloc(sizeof(struct List));
         node->date.day = rand()%31+1;
         node->date.month = rand()%12+1;
-        node->date.year = rand()%100+1921;
+        node->date.year = rand()%124+1921;
         node->next=head->next;
         head->next=node;
     }
@@ -127,7 +127,7 @@ struct List* createList() {
     cout << "请输入要创建的节点数:";
     cin >> n;
     head = createList(n);
-    cout << "成功创建" << n << "个日期节点!(1921<=年<=2021,1<=月<=12,1<=日<=31)\n" << endl;
+    cout << "成功创建" << n << "个日期节点!(1921<=年<=2025,1<=月<=12,1<=日<=31)\n" << endl;
 
     system("pause");
     cout << endl;
@@ -355,21 +355,43 @@ void deleteMenu() {
  * @func 删除节点(二级菜单)
  * @param head
  */
-void deleteNode(struct List *head) {
+int deleteNode(struct List *head) {
     char choice;
+    int a, b, c;
     while ((choice = getChoice(OPTION_2,deleteMenu)) != 'Q') {
         switch (choice) {
             // First Node
             case 'F':
-                deleteHead(head);
+                a = deleteHead(head);
+                cout << endl;
+                cout << "成功删除第一个节点" << endl;
+                cout << endl;
+                system("pause");
                 break;
             // Last Node
             case 'L':
-                deleteTail(head);
+                b = deleteTail(head);
+                cout << endl;
+                cout << "成功删除最后的节点" << endl;
+                cout << endl;
+                system("pause");
                 break;
             // Not Ac Node
             case 'N':
-                deleteNoAcNode(head);
+                c = deleteNoAcNode(head);
+                if (a) {
+                    cout << endl;
+                    cout << "成功删除" << a << "个非法节点!" << endl;
+                    cout << endl;
+                    system("pause");
+                    cout << endl;
+                } else {
+                    cout << endl;
+                    cout << "不含非法节点" << endl;
+                    cout << endl;
+                    system("pause");
+                    cout << endl;
+                }
         }
     }
     cout << endl;
@@ -377,13 +399,14 @@ void deleteNode(struct List *head) {
     cout << endl;
     system("pause");
     cout << endl;
+    return (a+b+c);
 }
 
 /**
  * @func 删除第一个节点，日期非法的节点，最后一个节点
  * @param head 链表头指针
  */
-void deleteNoAcNode(struct List *head)
+int deleteNoAcNode(struct List *head)
 {
     struct List *current,*prev;
     int cnt = 0;
@@ -398,26 +421,20 @@ void deleteNoAcNode(struct List *head)
         prev = current;
         current = current->next;
     }
-    cout << endl;
-    cout << "成功删除" << cnt << "个非法节点!" << endl;
-    cout << endl;
-    system("pause");
-    cout << endl;
+
+    return cnt;
 }
 
 /**
  * @func 删除第一个节点(不算哨兵节点)
  * @param head
  */
-void deleteHead(struct List *head) {
+int deleteHead(struct List *head) {
     struct List *current;
     current = head->next;
     head->next = current->next;
     free(current);
-    cout << endl;
-    cout << "成功删除第一个节点" << endl;
-    cout << endl;
-    system("pause");
+
     cout << endl;
 }
 
@@ -425,7 +442,7 @@ void deleteHead(struct List *head) {
  * @func 删除最后一个节点
  * @param head
  */
-void deleteTail(struct List *head) {
+int deleteTail(struct List *head) {
     struct List *prev = head;
 //    if (head->next == NULL) {
 //        free(head);
@@ -436,11 +453,8 @@ void deleteTail(struct List *head) {
     }
     free(prev->next);
     prev->next = NULL;
-    cout << endl;
-    cout << "成功删除最后一个节点" << endl;
-    cout << endl;
-    system("pause");
-    cout << endl;
+
+    return 1;
 }
 
 /**
