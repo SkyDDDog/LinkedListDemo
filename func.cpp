@@ -65,7 +65,7 @@ void menu() {
          << "$  O:链表按日期从小到大排序                                                    $"  << endl
          << "$  P:查找链表中日期数据均为素数的节点                                          $" << endl
          << "$  R:链表翻转                                                                  $" << endl
-         << "$  C:清屏                                                                    $" << endl
+         << "$  C:清屏                                                                      $" << endl
          << "$  Q:退出系统                                                                  $" << endl;
     for (int i = 0; i < MENU_LENGTH_1; ++i) {
         cout << '=';
