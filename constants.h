@@ -26,7 +26,7 @@ struct List {
 const int MENU_LENGTH_1 = 80;
 const int MENU_LENGTH_2 = 50;
 //²Ëµ¥Ñ¡Ïî
-const char OPTION_1[] = "I,S,F,E,N,D,A,T,V,P,R,C,Q";
+const char OPTION_1[] = "I,S,F,E,N,D,A,T,O,P,R,C,Q";
 const char OPTION_2[] = "F,L,N,Q";
 #define _MENU_DEFINED
 #endif

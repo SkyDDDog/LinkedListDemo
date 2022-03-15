@@ -82,8 +82,8 @@ int main() {
             case 'T':
                 showListDays(head);
                 break;
-            // Valid
-            case 'V':
+            // Order
+            case 'O':
                 printByAsc(head);
                 break;
             // Prime
