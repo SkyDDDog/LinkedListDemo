@@ -37,7 +37,7 @@ bool isLeapYear(int year);
 bool isAc(int year,int month,int day);
 //输出不合法日期
 void showNotAcDate(struct List *head);
-//删除节点的二级菜单
+//删除菜单(二级菜单)
 void deleteMenu();
 //删除节点
 int deleteNode(struct List *head);
@@ -51,6 +51,9 @@ int deleteTail(struct List *head);
 struct Date getCurTime();
 //判断日期比较日期大小
 bool isBiggerDate(struct Date d1,struct Date d2);
+bool isSmallerDate(struct Date d1,struct Date d2);
+//插入菜单(二级菜单)
+void insertMenu();
 //插入到链头
 void insertHead(struct List *head);
 //插入到链尾

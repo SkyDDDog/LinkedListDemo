@@ -199,6 +199,7 @@ void showList(struct List *head,int n) {
             break;
         }
     }
+
     cout << endl;
     system("pause");
     cout << endl;
@@ -358,7 +359,7 @@ void deleteMenu() {
  */
 int deleteNode(struct List *head) {
     char choice;
-    int a, b, c;
+    int a=0, b=0, c=0;
     while ((choice = getChoice(OPTION_2,deleteMenu)) != 'Q') {
         switch (choice) {
             // First Node
@@ -380,9 +381,9 @@ int deleteNode(struct List *head) {
             // Not Ac Node
             case 'N':
                 c = deleteNoAcNode(head);
-                if (a) {
+                if (c) {
                     cout << endl;
-                    cout << "成功删除" << a << "个非法节点!" << endl;
+                    cout << "成功删除" << c << "个非法节点!" << endl;
                     cout << endl;
                     system("pause");
                     cout << endl;
@@ -491,6 +492,46 @@ bool isBiggerDate(struct Date d1,struct Date d2) {
 }
 
 /**
+ * @func 比较日期大小
+ * @param d1 第一个日期
+ * @param d2 第二个日期
+ * @return d1>d2 返回true
+ */
+bool isSmallerDate(struct Date d1,struct Date d2) {
+    if (d1.year > d2.year) {
+        return true;
+    }
+    if (d1.year == d2.year && d1.month < d2.month) {
+        return true;
+    }
+    if (d1.year == d2.year && d1.month == d2.month && d1.day < d2.day) {
+        return true;
+    }
+    return false;
+}
+
+/**
+ * @func 插入菜单(二级菜单)
+ */
+void insertMenu() {
+    // 二级菜单
+    cout << endl;
+    for (int i = 0; i < MENU_LENGTH_2; ++i) {
+        cout << '-';
+    }
+    cout << endl;
+    cout << "F:至链头添加一个节点" << endl;
+    cout << "L:至链尾添加一个节点" << endl;
+    cout << "B:至第一个大于当前日期的节点之前插入一个节点" << endl;
+    cout << "P:至第一个大于当前日期的节点之后插入一个节点" << endl;
+    cout << "Q:退出二级菜单" << endl;
+    for (int i = 0; i < MENU_LENGTH_2; ++i) {
+        cout << '-';
+    }
+    cout << endl;
+}
+
+/**
  * @func 插入当前日期成为第一个节点
  * @param head 链表头指针
  */
@@ -547,7 +588,7 @@ void insertPost(struct List *head) {
     node = (struct List *)malloc(sizeof(struct List));
     node->date = getCurTime();
     while (current) {
-        if (!isBiggerDate(current->next->date,node->date)) {
+        if (isSmallerDate(current->next->date,node->date)) {
             node->next = current->next;
             current->next = node;
             break;
@@ -564,11 +605,46 @@ void insertPost(struct List *head) {
  * @param head
  */
 void insertNode(struct List *head) {
-    insertHead(head);
-    insertTail(head);
-    insertPrev(head);
-    insertPost(head);
-    cout << "节点插入成功" << endl;
+    char choice;
+    while ((choice = getChoice(OPTION_3,insertMenu)) != 'Q') {
+        switch (choice) {
+            // First Node
+            case 'F':
+                insertHead(head);
+                cout << endl;
+                cout << "成功至链头添加一个节点" << endl;
+                cout << endl;
+                system("pause");
+                break;
+            // Last Node
+            case 'L':
+                insertTail(head);
+                cout << endl;
+                cout << "成功至链尾添加一个节点" << endl;
+                cout << endl;
+                system("pause");
+                break;
+            // Before Node
+            case 'B':
+                insertPrev(head);
+                cout << endl;
+                cout << "成功至第一个大于当前日期的节点之前插入一个节点" << endl;
+                cout << endl;
+                system("pause");
+                break;
+            // Post Node
+            case 'P':
+                insertPost(head);
+                cout << endl;
+                cout << "成功至第一个大于当前日期的节点之后插入一个节点" << endl;
+                cout << endl;
+                system("pause");
+                break;
+        }
+    }
+    cout << endl;
+    cout << "您已退出插入菜单！" << endl;
+    cout << endl;
     system("pause");
     cout << endl;
 }
@@ -632,6 +708,8 @@ void sortByAsc(struct List *head) {
     struct List *current,*post;
     struct Date temp;
     current = head->next;
+    cout << "正在排序...请稍等" << endl;
+    cout << endl;
     while (current) {
         post = current->next;
         while (post) {
@@ -644,6 +722,9 @@ void sortByAsc(struct List *head) {
         }
         current = current->next;
     }
+    cout << "排序成功！" << endl;
+    cout << endl;
+    system("pause");
 }
 
 /**
@@ -652,10 +733,6 @@ void sortByAsc(struct List *head) {
  */
 void printByAsc(struct List *head) {
     sortByAsc(head);
-    showAll(head);
-    cout << "已将数据全部按日期从小到大排序!" << endl;
-    system("pause");
-    cout << endl;
 }
 
 /**
@@ -698,7 +775,7 @@ bool isPrime(struct Date date) {
  */
 void printPrime(struct List *head) {
     int cnt = 0;
-    for (struct List *current = head; current ; current = current->next) {
+    for (struct List *current = head->next; current ; current = current->next) {
         if (isPrime(current->date)) {
             cnt++;
             printf(" %04d.%02d.%02d "
@@ -708,6 +785,7 @@ void printPrime(struct List *head) {
             }
         }
     }
+    cout << endl;
     cout << endl;
     system("pause");
     cout << endl;
@@ -733,7 +811,9 @@ void reverseList(struct List * head) {
     current->next = prev;
     head->next = current;
 
+    cout << endl;
     cout << "链表翻转成功!" << endl;
+    cout << endl;
     system("pause");
     cout << endl;
 }
@@ -744,6 +824,7 @@ void reverseList(struct List * head) {
 void clear() {
     system("cls");
     cout << "清屏成功" << endl;
+    cout << endl;
     system("pause");
     cout << endl;
 }

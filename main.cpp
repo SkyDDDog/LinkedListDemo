@@ -43,7 +43,7 @@ int main() {
     //用户的选择
     char choice;
     while ((choice = getChoice(OPTION_1,menu))!='Q') {
-        if (choice!='C' && head->next==NULL) {
+        if (choice!='I' && head->next==NULL) {
             cout << "\a\n链表为空!请先创建链表!\n" << endl;
             system("pause");
             cout << endl;

@@ -28,6 +28,7 @@ const int MENU_LENGTH_2 = 50;
 //²Ëµ¥Ñ¡Ïî
 const char OPTION_1[] = "I,S,F,E,N,D,A,T,O,P,R,C,Q";
 const char OPTION_2[] = "F,L,N,Q";
+const char OPTION_3[] = "F,L,B,P,Q";
 #define _MENU_DEFINED
 #endif
 
